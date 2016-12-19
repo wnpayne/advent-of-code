@@ -41,3 +41,11 @@
   (map (fn [x]
     (let [walkval (walk (take x input)) distance (taxicab-distance (second walkval))] {x [walkval distance]}))
     (take (count input) (iterate inc 1))))
+
+(defn -main [& args]
+  (let [input (get-input
+        (do
+          (print "Input file? ")
+          (flush)
+          (read-line)))]
+    (println (str "Santa's workshop is: " (taxicab-distance (second (walk input))) " blocks away."))))
