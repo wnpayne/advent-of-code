@@ -1,7 +1,8 @@
-(ns advent-of-code.day1-1-test
+(ns advent-of-code.day1.1-test
   (:require [clojure.test :refer :all]
             [advent-of-code.core]
-            [advent-of-code.day1-1 :refer :all]))
+            [advent-of-code.day1.1 :refer :all]
+            [advent-of-code.day1.common :refer :all]))
 
 (deftest provided-test-1
   (testing "R2,L3 should be 5"
