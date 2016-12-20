@@ -22,7 +22,8 @@
          (combo/combinations tryangle 2))))
 
 (defn valid-one-repeat-triangle?
-  "Triangle is valid if repeated side length is larger than singular side."
+  "Triangle is valid if repeated side length is larger than absolute difference
+  between repeated and singular side."
   [tryangle tryset]
   (let [repeated-val (first (first (filter #(> (val %) 1) (frequencies tryangle))))
         other (first (remove #{repeated-val} tryset))]
