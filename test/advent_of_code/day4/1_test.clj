@@ -27,3 +27,8 @@
   (testing "checksum of notarealroom is oarel"
     (is (= "oarel"
            (checksum-from-string "notarealroom")))))
+
+(deftest sum-valid-seqs
+  (testing "provided example."
+    (is (= 1514
+           (sum-valid-sectors (map process-line '("aaaaa-bbb-z-y-x-123[abxyz]" "a-b-c-d-e-f-g-h-987[abcde]" "not-a-real-room-404[oarel]" "totally-real-room-200[decoy]")))))))
