@@ -25,11 +25,25 @@
   (string/join " " (map #(decrypt-word % (second line)) (first line))))
 
 
+(defn find-north-pole-storage [line]
+  (let [decrypted-name (decrypt-line line)]
+    (if-let [northfound (re-find #"north" decrypted-name)]
+      (list decrypted-name (second line))
+      nil)))
+
+
 (defn -main [& args]
-  (let 
-    [decrypted-lines (map decrypt-line
-                          (filter day4-1/valid-line? 
-                                  (map day4-1/process-line (day4-1/get-input))))]
-    (do
-        (println "Decrypted lines:")
-        (run! println decrypted-lines))))
+  (run! println
+        (filter identity
+                (map find-north-pole-storage 
+                     (filter day4-1/valid-line?
+                             (map day4-1/process-line (day4-1/get-input)))))))
+
+;;(defn -main [& args]
+;;  (let 
+;;    [decrypted-lines (map decrypt-line
+;;                          (filter day4-1/valid-line? 
+;;                                  (map day4-1/process-line (day4-1/get-input))))]
+;;    (do
+;;        (println "Decrypted lines:")
+;;        (run! println decrypted-lines))))
