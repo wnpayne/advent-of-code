@@ -5,7 +5,7 @@
 
 (deftest test-process-line-1
   (testing "aaaaa-bbb-z-y-x-123[abxyz]"
-    (is (= '("aaaaabbbzyx" 123 "abxyz")
+    (is (= '(("aaaaa" "bbb" "z" "y" "x") 123 "abxyz")
            (process-line "aaaaa-bbb-z-y-x-123[abxyz]")))))
 
 (deftest checksum-from-string-1
@@ -31,4 +31,8 @@
 (deftest sum-valid-seqs
   (testing "provided example."
     (is (= 1514
-           (sum-valid-sectors (map process-line '("aaaaa-bbb-z-y-x-123[abxyz]" "a-b-c-d-e-f-g-h-987[abcde]" "not-a-real-room-404[oarel]" "totally-real-room-200[decoy]")))))))
+           (sum-valid-sectors
+             (map process-line '("aaaaa-bbb-z-y-x-123[abxyz]"
+                                 "a-b-c-d-e-f-g-h-987[abcde]"
+                                 "not-a-real-room-404[oarel]"
+                                 "totally-real-room-200[decoy]")))))))

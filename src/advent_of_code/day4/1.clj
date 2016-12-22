@@ -13,7 +13,7 @@
 (defn process-line [line]
   "process line into vec of enc-name sec-id chksum"
   (let [splitline (string/split line #"-")
-        enc-name  (apply str (butlast splitline))
+        enc-name  (butlast splitline)
         tail      (last splitline)
         sec-check (string/split tail #"\[|\]")]
     (list enc-name (Integer/parseInt (first sec-check)) (second sec-check))))
@@ -57,16 +57,16 @@
 (defn valid-checksum? [enc-string chksum]
   "is checksum valid for enc-string?"
   (= chksum
-     (checksum-from-string enc-string)))
+     (checksum-from-string (apply str enc-string))))
+
+(defn valid-line? [line]
+  (valid-checksum? (first line) (last line)))
 
 (defn sum-valid-sectors [lines]
   "from list of lines sum sector ids of lines with valid checksums"
   (reduce +
     (map #(second %)
-         (filter (fn [line]
-                   (valid-checksum? (first line) (last line)))
-                 lines))))
-
+         (filter valid-line? lines))))
 
 (defn -main [& args]
-  (sum-valid-sectors (map process-line (get-input))))
+  (println (str "Sum of valid sector ids: " (sum-valid-sectors (map process-line (get-input))))))

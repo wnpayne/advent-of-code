@@ -6,6 +6,8 @@
             [advent-of-code.day2.2 :as day2-2]
             [advent-of-code.day3.1 :as day3-1]
             [advent-of-code.day3.2 :as day3-2]
+            [advent-of-code.day4.1 :as day4-1]
+            [advent-of-code.day4.2 :as day4-2]
             [clojure.pprint :refer [pprint]]
             [clojure.string :as string]))
 
@@ -16,7 +18,9 @@
    :2-1 ["Find the bathroom keycode before you lose control!" day2-1/-main]
    :2-2 ["Find the bathroom keycode with a more complex keypad!" day2-2/-main]
    :3-1 ["Count all valid triangles." day3-1/-main]
-   :3-2 ["Count all valid triangles when reading correctly." day3-2/-main]})
+   :3-2 ["Count all valid triangles when reading correctly." day3-2/-main]
+   :4-1 ["Sum the valid sector IDs." day4-1/-main]
+   :4-2 ["Decrypt the sector names." day4-2/-main]})
 
 (defn -main
   "Prompt for input and run problem."
