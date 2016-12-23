@@ -48,3 +48,10 @@
        (filter valid-output-position?)
        (take 8)
        (password-from-hashes)))
+
+(defn real-decrypt-password-test [password]
+  (->> password
+       (hash-seq)
+       (filter starts-with-five-zeros?)
+       (filter valid-output-position?)
+       (take 8)))
